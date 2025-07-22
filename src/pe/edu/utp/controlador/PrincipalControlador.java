@@ -209,8 +209,10 @@ public class PrincipalControlador implements ActionListener {
 
         JComboBox<String> cbxMetodo = vista.getCbxMetodoPP();
         cbxMetodo.removeAllItems();
-        cbxMetodo.addItem("Tarjeta");
+        cbxMetodo.addItem("Tarjeta de Crédito/Débito");
         cbxMetodo.addItem("Efectivo");
+        cbxMetodo.addItem("Transferencia bancaria");
+        cbxMetodo.addItem("Pago móvil");
     }
 
     private void personalizarLabels() {
