@@ -4,8 +4,8 @@
  */
 package pe.edu.utp.app;
 
-import pe.edu.utp.controlador.PrincipalControlador;
-import pe.edu.utp.vista.PrincipalVista;
+import pe.edu.utp.controlador.LoginControlador;
+import pe.edu.utp.vista.LoginVista;
 
 /**
  *
@@ -17,8 +17,8 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PrincipalVista vista = new PrincipalVista();
-        new PrincipalControlador(vista);
+        LoginVista vista = new LoginVista();
+        new LoginControlador(vista);
 
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);

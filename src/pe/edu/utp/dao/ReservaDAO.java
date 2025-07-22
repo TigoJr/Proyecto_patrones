@@ -4,6 +4,7 @@
  */
 package pe.edu.utp.dao;
 
+import pe.edu.utp.singleton.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -294,6 +294,31 @@ public class Estilos {
         });
     }
 
+    public static void personalizarTextArea(JTextArea area) {
+        area.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+        area.setForeground(PaletaColores.CAMPO_FONDO);
+        area.setBackground(PaletaColores.FONDO_ALTERNO);
+
+        Border paddingBorder = BorderFactory.createEmptyBorder(0, 5, 0, 0);
+        Border lineBorder = BorderFactory.createLineBorder(PaletaColores.FONDO_ALTERNO);
+        area.setBorder(BorderFactory.createCompoundBorder(lineBorder, paddingBorder));
+
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setEditable(false);
+
+        area.addPropertyChangeListener("enabled", evt -> {
+            boolean habilitado = area.isEnabled();
+            area.setBackground(habilitado ? PaletaColores.FONDO_ALTERNO : PaletaColores.CAMPO_FONDO_INACTIVO);
+            area.setForeground(habilitado ? PaletaColores.CAMPO_TEXTO : PaletaColores.CAMPO_TEXTO_INACTIVO);
+        });
+
+        if (!area.isEnabled()) {
+            area.setBackground(PaletaColores.CAMPO_FONDO_INACTIVO);
+            area.setForeground(PaletaColores.CAMPO_FONDO);
+        }
+    }
+
     public static void labelLateral(JLabel label) {
         label.setForeground(PaletaColores.LABEL_LATERAL_TEXTO);
         label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
