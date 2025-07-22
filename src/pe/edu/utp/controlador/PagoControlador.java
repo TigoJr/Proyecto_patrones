@@ -114,7 +114,7 @@ public class PagoControlador implements ActionListener {
             registrarPago();
         } else if (fuente == vista.getBtnLimpiarPP()) {
             limpiar();
-        } else if (fuente == vista.getBtnLimpiarPP()) {
+        } else if (fuente == vista.getBtnRefrescarPP()) {
             cargarReservas();
             cargarPagos();
         }
@@ -124,7 +124,6 @@ public class PagoControlador implements ActionListener {
         vista.getTxtMontoPP().setText("");
         vista.getTxtFechaPP().setText("");
         vista.getCbxMetodoPP().setSelectedIndex(0);
-        cargarReservas();
     }
 
     private void registrarPago() {

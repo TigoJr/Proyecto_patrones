@@ -64,8 +64,8 @@ public class Pago {
         return metodoPago;
     }
 
-    public void setMetodoPago(String metodoP) {
-        this.metodoPago = metodoP;
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
     }
     
 }

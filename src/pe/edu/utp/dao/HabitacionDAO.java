@@ -38,6 +38,21 @@ public class HabitacionDAO {
         }
     }
 
+    private boolean existeNumeroParaOtroId(int numero, int idHabitacion) {
+        String sql = "SELECT COUNT(*) FROM Habitacion WHERE numero = ? AND idHabitacion != ?";
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, numero);
+            ps.setInt(2, idHabitacion);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar número de habitación duplicado: " + e.getMessage());
+        }
+        return false;
+    }
+
     public boolean agregar(Habitacion habitacion) {
         if (habitacion.getNumero() <= 0) {
             System.err.println("Número de habitación inválido.");
@@ -50,7 +65,7 @@ public class HabitacionDAO {
         }
         String sql = "INSERT INTO Habitacion (numero, tipo, estado, precio) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-            
+
             ps.setInt(1, habitacion.getNumero());
             ps.setString(2, habitacion.getTipo());
             ps.setString(3, habitacion.getEstadoActual().getNombreEstado());
@@ -92,8 +107,8 @@ public class HabitacionDAO {
             return false;
         }
 
-        if (existeNumero(habitacion.getNumero())) {
-            System.err.println("Ya existe una habitación con ese número.");
+        if (existeNumeroParaOtroId(habitacion.getNumero(), habitacion.getIdHabitacion())) {
+            System.err.println("[Habitación DAO] Ya existe otra habitación con ese número.");
             return false;
         }
 

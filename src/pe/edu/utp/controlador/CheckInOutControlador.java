@@ -15,6 +15,7 @@ import pe.edu.utp.modelo.Habitacion;
 import pe.edu.utp.modelo.Reserva;
 import pe.edu.utp.state.EstadoDisponible;
 import pe.edu.utp.state.EstadoHabitacion;
+import pe.edu.utp.state.EstadoMantenimiento;
 import pe.edu.utp.state.EstadoOcupada;
 import pe.edu.utp.vista.PrincipalVista;
 
@@ -67,11 +68,11 @@ public class CheckInOutControlador implements ActionListener {
             vista.getTxtEstadoPCK().setText(h.getEstadoActual().getNombreEstado());
 
             switch (h.getEstadoActual().getNombreEstado().toLowerCase()) {
-                case "reservado" -> {
+                case "ocupada" -> {
                     vista.getBtnCheckIn().setEnabled(true);
                     vista.getBtnCheckOut().setEnabled(false);
                 }
-                case "ocupado" -> {
+                case "mantenimiento" -> {
                     vista.getBtnCheckIn().setEnabled(false);
                     vista.getBtnCheckOut().setEnabled(true);
                 }
@@ -90,20 +91,21 @@ public class CheckInOutControlador implements ActionListener {
         }
 
         Habitacion h = habitacionDao.buscarPorId(id);
+        
         if (h.getEstadoActual().getNombreEstado().equalsIgnoreCase("Ocupada")) {
-            h.setEstadoActual(new EstadoOcupada());
+            h.setEstadoActual(new EstadoMantenimiento());
             h.mostrarEstado();
 
-            String estadoTexto = "Ocupada";
+            String estadoTexto = "Mantenimiento";
             EstadoHabitacion estado = EstadoHabitacionFactory.crearEstado(estadoTexto);
             h.setEstadoActual(estado);
 
             habitacionDao.actualizar(h);
 
-            JOptionPane.showMessageDialog(null, "Check-In realizado. Habitación ahora está OCUPADA.");
+            JOptionPane.showMessageDialog(null, "Check-In realizado. Habitación ahora está en MANTENIMIENTO.");
             cargarHabitaciones();
         } else {
-            JOptionPane.showMessageDialog(null, "Esta habitación no está reservada.");
+            JOptionPane.showMessageDialog(null, "Esta habitación no está ocupada.");
         }
     }
 
@@ -114,7 +116,8 @@ public class CheckInOutControlador implements ActionListener {
         }
 
         Habitacion h = habitacionDao.buscarPorId(id);
-        if (h.getEstadoActual().getNombreEstado().equalsIgnoreCase("Ocupada")) {
+        
+        if (h.getEstadoActual().getNombreEstado().equalsIgnoreCase("Mantenimiento")) {
             h.setEstadoActual(new EstadoDisponible());
             h.mostrarEstado();
 
@@ -126,7 +129,7 @@ public class CheckInOutControlador implements ActionListener {
             JOptionPane.showMessageDialog(null, "Check-Out realizado. Habitación ahora está DISPONIBLE.");
             cargarHabitaciones();
         } else {
-            JOptionPane.showMessageDialog(null, "Esta habitación no está ocupada.");
+            JOptionPane.showMessageDialog(null, "Esta habitación no está en mantenimiento.");
         }
     }
 

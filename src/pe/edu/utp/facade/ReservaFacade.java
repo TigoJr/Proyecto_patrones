@@ -6,39 +6,51 @@ package pe.edu.utp.facade;
 
 import pe.edu.utp.dao.HabitacionDAO;
 import pe.edu.utp.dao.ReservaDAO;
+import pe.edu.utp.factory.EstadoHabitacionFactory;
 import pe.edu.utp.modelo.Habitacion;
 import pe.edu.utp.modelo.Reserva;
+import pe.edu.utp.state.EstadoHabitacion;
 import pe.edu.utp.state.EstadoOcupada;
 
 public class ReservaFacade {
 
-    private final ReservaDAO reservaDao;
-    private final HabitacionDAO habitacionDao;
+    private final ReservaDAO reservaDAO;
+    private final HabitacionDAO habitacionDAO;
 
-    public ReservaFacade(ReservaDAO reservaDao, HabitacionDAO habitacionDao) {
-        this.reservaDao = reservaDao;
-        this.habitacionDao = habitacionDao;
+    public ReservaFacade(ReservaDAO reservaDAO, HabitacionDAO habitacionDAO) {
+        this.reservaDAO = reservaDAO;
+        this.habitacionDAO = habitacionDAO;
     }
 
-    /**
-     * Realiza la reserva y actualiza el estado de la habitación.
-     * Devuelve true si ambos procesos fueron exitosos.
-     */
     public boolean hacerReserva(Reserva reserva) {
         try {
-            boolean insertado = reservaDao.agregar(reserva);
-            if (!insertado) return false;
+            boolean insertado = reservaDAO.agregar(reserva);
+            if (!insertado) {
+                return false;
+            }
 
-            Habitacion habitacion = habitacionDao.buscarPorId(reserva.getIdHabitacion());
-            if (habitacion == null) return false;
+            Habitacion habitacion = habitacionDAO.buscarPorId(reserva.getIdHabitacion());
+            if (habitacion == null) {
+                return false;
+            }
 
             habitacion.setEstadoActual(new EstadoOcupada());
+            String estadoTexto = "Ocupada";
+            EstadoHabitacion estado = EstadoHabitacionFactory.crearEstado(estadoTexto);
+            habitacion.setEstadoActual(estado);
+            
+            boolean actualizada = habitacionDAO.actualizar(habitacion);
 
-            return habitacionDao.actualizar(habitacion);
+            if (!actualizada) {
+                System.out.println("Reserva creada, pero no se actualizó la habitación.");
+            }
+            
+            return true;
 
         } catch (Exception e) {
             System.err.println("Error en hacerReserva(): " + e.getMessage());
             return false;
         }
+
     }
 }

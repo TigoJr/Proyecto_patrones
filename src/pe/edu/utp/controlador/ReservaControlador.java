@@ -108,6 +108,7 @@ public class ReservaControlador implements ActionListener {
         } else if (e.getSource() == vista.getBtnRefrescarPR()) {
             cargarClientes();
             cargarHabitacionesDisponibles();
+            cargarReservasEnTabla();
         }
     }
 

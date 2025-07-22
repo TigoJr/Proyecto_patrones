@@ -26,7 +26,7 @@ public class PagoDAO {
     }
 
     public boolean agregar(Pago pago) {
-        String sql = "INSERT INTO Pago (idReserva, monto, fecha, metodoP) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Pago (idReserva, monto, fecha, metodoPago) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
             ps.setInt(1, pago.getIdReserva());
             ps.setDouble(2, pago.getMonto());
