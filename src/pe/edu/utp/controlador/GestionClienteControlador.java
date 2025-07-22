@@ -13,7 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import pe.edu.utp.dao.ClienteDAO;
+import pe.edu.utp.daoimpl.ClienteDAOImpl;
 import pe.edu.utp.modelo.Cliente;
 import pe.edu.utp.vista.PrincipalVista;
 
@@ -23,12 +23,12 @@ import pe.edu.utp.vista.PrincipalVista;
  */
 public class GestionClienteControlador implements ActionListener, MouseListener {
 
-    private final ClienteDAO dao;
+    private final ClienteDAOImpl dao;
     private final Cliente modelo;
     private final PrincipalVista vista;
     private Cliente clienteSeleccionado;
 
-    public GestionClienteControlador(ClienteDAO dao, Cliente modelo, PrincipalVista vista) {
+    public GestionClienteControlador(ClienteDAOImpl dao, Cliente modelo, PrincipalVista vista) {
         this.dao = dao;
         this.modelo = modelo;
         this.vista = vista;
@@ -228,15 +228,15 @@ public class GestionClienteControlador implements ActionListener, MouseListener 
             return false;
         }
 
-        if (dao.dniExiste(c.getDni())) {
+        if (dao.existePorDni(c.getDni())) {
             JOptionPane.showMessageDialog(null, "El DNI ya está registrado.");
             return false;
         }
-        if (dao.telefonoExiste(c.getTelefono())) {
+        if (dao.existePorTelefono(c.getTelefono())) {
             JOptionPane.showMessageDialog(null, "El teléfono ya está registrado.");
             return false;
         }
-        if (dao.emailExiste(c.getEmail())) {
+        if (dao.existePorEmail(c.getEmail())) {
             JOptionPane.showMessageDialog(null, "El email ya está registrado.");
             return false;
         }
@@ -265,17 +265,17 @@ public class GestionClienteControlador implements ActionListener, MouseListener 
             return false;
         }
 
-        if (dao.dniExisteEnOtroCliente(c.getDni(), c.getIdCliente())) {
+        if (dao.existePorDniEnOtro(c.getDni(), c.getIdCliente())) {
             JOptionPane.showMessageDialog(null, "El DNI ya está registrado por otro cliente.");
             return false;
         }
 
-        if (dao.telefonoExisteEnOtroCliente(c.getTelefono(), c.getIdCliente())) {
+        if (dao.existePorTelefonoEnOtro(c.getTelefono(), c.getIdCliente())) {
             JOptionPane.showMessageDialog(null, "El teléfono ya está registrado por otro cliente.");
             return false;
         }
 
-        if (dao.emailExisteEnOtroCliente(c.getEmail(), c.getIdCliente())) {
+        if (dao.existePorEmailEnOtro(c.getEmail(), c.getIdCliente())) {
             JOptionPane.showMessageDialog(null, "El email ya está registrado por otro cliente.");
             return false;
         }

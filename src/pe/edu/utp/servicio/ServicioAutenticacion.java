@@ -5,7 +5,7 @@
 package pe.edu.utp.servicio;
 
 import org.mindrot.jbcrypt.BCrypt;
-import pe.edu.utp.dao.UsuarioDAO;
+import pe.edu.utp.daoimpl.UsuarioDAOImpl;
 import pe.edu.utp.modelo.Usuario;
 
 /**
@@ -14,14 +14,14 @@ import pe.edu.utp.modelo.Usuario;
  */
 public class ServicioAutenticacion {
 
-    private final UsuarioDAO usuarioDAO;
+    private final UsuarioDAOImpl usuarioDAO;
 
-    public ServicioAutenticacion(UsuarioDAO usuarioDAO) {
+    public ServicioAutenticacion(UsuarioDAOImpl usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
     }
 
     public boolean registrar(String nombreUsuario, String passwordPlano) {
-        if (usuarioDAO.existeUsuario(nombreUsuario)) {
+        if (usuarioDAO.existePorNombreUsuario(nombreUsuario)) {
             return false;
         }
 

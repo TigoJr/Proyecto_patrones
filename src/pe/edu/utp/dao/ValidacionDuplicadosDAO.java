@@ -4,14 +4,10 @@
  */
 package pe.edu.utp.dao;
 
-import pe.edu.utp.modelo.Habitacion;
-
 /**
  *
  * @author USUARIO
  */
-public interface HabitacionDAO extends CrudDAO<Habitacion, Integer> {
-
-    boolean existePorNumero(int numero);
-    boolean existePorNumeroEnOtro(int numero, int idHabitacion);
+public interface ValidacionDuplicadosDAO {
+    boolean existePorEnOtro(String campo, String valor, int idActual);
 }

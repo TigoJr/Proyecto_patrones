@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import pe.edu.utp.dao.UsuarioDAO;
+import pe.edu.utp.daoimpl.UsuarioDAOImpl;
 import pe.edu.utp.estilo.Estilos;
 import pe.edu.utp.estilo.PaletaColores;
 import pe.edu.utp.servicio.ServicioAutenticacion;
@@ -31,7 +31,7 @@ public class LoginControlador implements ActionListener {
         this.vista = vista;
 
         Connection conexion = ConexionBD.getInstancia().getConexion();
-        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+        UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl(conexion);
         this.servicio = new ServicioAutenticacion(usuarioDAO);
 
         aplicarEstilos();

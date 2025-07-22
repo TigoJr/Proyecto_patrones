@@ -5,15 +5,15 @@
 package pe.edu.utp.dao;
 
 import java.util.List;
-import pe.edu.utp.modelo.Reserva;
 
 /**
  *
  * @author USUARIO
  */
-public interface ReservaDAO extends CrudDAO<Reserva, Integer> {
-
-    List<Reserva> listarReservasPagadas();
-    String obtenerNombreClientePorId(int idCliente);
-    int obtenerNumeroHabitacion(int idHabitacion);
+public interface CrudDAO<T, ID> {
+    boolean agregar(T entidad);
+    boolean actualizar(T entidad);
+    boolean eliminar(ID id);
+    T buscarPorId(ID id);
+    List<T> listarTodos();
 }

@@ -4,8 +4,8 @@
  */
 package pe.edu.utp.facade;
 
-import pe.edu.utp.dao.HabitacionDAO;
-import pe.edu.utp.dao.ReservaDAO;
+import pe.edu.utp.daoimpl.HabitacionDAOImpl;
+import pe.edu.utp.daoimpl.ReservaDAOImpl;
 import pe.edu.utp.factory.EstadoHabitacionFactory;
 import pe.edu.utp.modelo.Habitacion;
 import pe.edu.utp.modelo.Reserva;
@@ -14,10 +14,10 @@ import pe.edu.utp.state.EstadoOcupada;
 
 public class ReservaFacade {
 
-    private final ReservaDAO reservaDAO;
-    private final HabitacionDAO habitacionDAO;
+    private final ReservaDAOImpl reservaDAO;
+    private final HabitacionDAOImpl habitacionDAO;
 
-    public ReservaFacade(ReservaDAO reservaDAO, HabitacionDAO habitacionDAO) {
+    public ReservaFacade(ReservaDAOImpl reservaDAO, HabitacionDAOImpl habitacionDAO) {
         this.reservaDAO = reservaDAO;
         this.habitacionDAO = habitacionDAO;
     }

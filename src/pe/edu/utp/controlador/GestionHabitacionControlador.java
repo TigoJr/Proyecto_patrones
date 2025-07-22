@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pe.edu.utp.dao.HabitacionDAO;
+import pe.edu.utp.daoimpl.HabitacionDAOImpl;
 import pe.edu.utp.factory.EstadoHabitacionFactory;
 import pe.edu.utp.factory.TipoHabitacionFactory;
 import pe.edu.utp.modelo.Habitacion;
@@ -24,11 +24,11 @@ import pe.edu.utp.vista.PrincipalVista;
  */
 public class GestionHabitacionControlador implements ActionListener, MouseListener {
 
-    private final HabitacionDAO dao;
+    private final HabitacionDAOImpl dao;
     private final PrincipalVista vista;
     private Habitacion habitacionSeleccionada;
 
-    public GestionHabitacionControlador(HabitacionDAO dao, PrincipalVista vista) {
+    public GestionHabitacionControlador(HabitacionDAOImpl dao, PrincipalVista vista) {
         this.dao = dao;
         this.vista = vista;
 
@@ -51,7 +51,7 @@ public class GestionHabitacionControlador implements ActionListener, MouseListen
         DefaultTableModel modeloTabla = (DefaultTableModel) vista.getTablaHabitaciones().getModel();
         modeloTabla.setRowCount(0);
 
-        List<Habitacion> lista = dao.listarTodas();
+        List<Habitacion> lista = dao.listarTodos();
         for (Habitacion h : lista) {
             modeloTabla.addRow(new Object[]{
                 h.getIdHabitacion(),
@@ -172,7 +172,7 @@ public class GestionHabitacionControlador implements ActionListener, MouseListen
     private void buscarHabitacionPorNumero() {
         try {
             int numero = Integer.parseInt(vista.getTxtNumeroPH().getText());
-            List<Habitacion> lista = dao.listarTodas();
+            List<Habitacion> lista = dao.listarTodos();
             for (Habitacion h : lista) {
                 if (h.getNumero() == numero) {
                     vista.getTxtIdPH().setText(String.valueOf(h.getIdHabitacion()));

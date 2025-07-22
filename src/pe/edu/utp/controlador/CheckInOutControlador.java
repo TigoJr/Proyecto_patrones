@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
-import pe.edu.utp.dao.HabitacionDAO;
-import pe.edu.utp.dao.ReservaDAO;
+import pe.edu.utp.daoimpl.HabitacionDAOImpl;
+import pe.edu.utp.daoimpl.ReservaDAOImpl;
 import pe.edu.utp.factory.EstadoHabitacionFactory;
 import pe.edu.utp.modelo.Habitacion;
 import pe.edu.utp.modelo.Reserva;
@@ -25,10 +25,10 @@ import pe.edu.utp.vista.PrincipalVista;
  */
 public class CheckInOutControlador implements ActionListener {
 
-    private final HabitacionDAO habitacionDao;
+    private final HabitacionDAOImpl habitacionDao;
     private final PrincipalVista vista;
 
-    public CheckInOutControlador(HabitacionDAO habitacionDao, PrincipalVista vista) {
+    public CheckInOutControlador(HabitacionDAOImpl habitacionDao, PrincipalVista vista) {
         this.habitacionDao = habitacionDao;
         this.vista = vista;
 
@@ -45,7 +45,7 @@ public class CheckInOutControlador implements ActionListener {
 
     private void cargarHabitaciones() {
         vista.getCbxHabitacionPCK().removeAllItems();
-        List<Reserva> reservasPagadas = new ReservaDAO().listarReservasPagadas();
+        List<Reserva> reservasPagadas = new ReservaDAOImpl().listarReservasPagadas();
 
         for (Reserva r : reservasPagadas) {
             Habitacion h = habitacionDao.buscarPorId(r.getIdHabitacion());

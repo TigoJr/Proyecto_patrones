@@ -6,7 +6,7 @@ package pe.edu.utp.controlador;
 
 
 import java.sql.Connection;
-import pe.edu.utp.dao.UsuarioDAO;
+import pe.edu.utp.daoimpl.UsuarioDAOImpl;
 import pe.edu.utp.servicio.ServicioAutenticacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +28,7 @@ public class RegistroControlador implements ActionListener {
         this.vista = vista;
 
         Connection conexion = ConexionBD.getInstancia().getConexion();
-        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+        UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl(conexion);
         this.servicio = new ServicioAutenticacion(usuarioDAO);
         
         vista.getBtnRegistrar().addActionListener(this);

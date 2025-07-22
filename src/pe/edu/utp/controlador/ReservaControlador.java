@@ -11,9 +11,9 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pe.edu.utp.dao.ClienteDAO;
-import pe.edu.utp.dao.HabitacionDAO;
-import pe.edu.utp.dao.ReservaDAO;
+import pe.edu.utp.daoimpl.ClienteDAOImpl;
+import pe.edu.utp.daoimpl.HabitacionDAOImpl;
+import pe.edu.utp.daoimpl.ReservaDAOImpl;
 import pe.edu.utp.facade.ReservaFacade;
 import pe.edu.utp.factory.EstadoReservaFactory;
 import pe.edu.utp.modelo.Cliente;
@@ -29,11 +29,11 @@ import pe.edu.utp.vista.PrincipalVista;
 public class ReservaControlador implements ActionListener {
 
     private final PrincipalVista vista;
-    private final ClienteDAO clienteDao;
-    private final HabitacionDAO habitacionDao;
-    private final ReservaDAO reservaDao;
+    private final ClienteDAOImpl clienteDao;
+    private final HabitacionDAOImpl habitacionDao;
+    private final ReservaDAOImpl reservaDao;
 
-    public ReservaControlador(PrincipalVista vista, ClienteDAO clienteDao, HabitacionDAO habitacionDao, ReservaDAO reservaDao) {
+    public ReservaControlador(PrincipalVista vista, ClienteDAOImpl clienteDao, HabitacionDAOImpl habitacionDao, ReservaDAOImpl reservaDao) {
         this.vista = vista;
         this.clienteDao = clienteDao;
         this.habitacionDao = habitacionDao;
@@ -62,7 +62,7 @@ public class ReservaControlador implements ActionListener {
     }
 
     private void cargarHabitacionesDisponibles() {
-        List<Habitacion> habitaciones = habitacionDao.listarTodas();
+        List<Habitacion> habitaciones = habitacionDao.listarTodos();
         vista.getCbxHabitacionPR().removeAllItems();
 
         for (Habitacion h : habitaciones) {
@@ -77,7 +77,7 @@ public class ReservaControlador implements ActionListener {
         DefaultTableModel modelo = (DefaultTableModel) vista.getTablaReservas().getModel();
         modelo.setRowCount(0);
 
-        List<Reserva> reservas = reservaDao.listarTodas();
+        List<Reserva> reservas = reservaDao.listarTodos();
         for (Reserva r : reservas) {
             modelo.addRow(new Object[]{
                 r.getIdReserva(),

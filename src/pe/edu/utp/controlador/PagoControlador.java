@@ -12,9 +12,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pe.edu.utp.dao.HabitacionDAO;
-import pe.edu.utp.dao.PagoDAO;
-import pe.edu.utp.dao.ReservaDAO;
+import pe.edu.utp.daoimpl.HabitacionDAOImpl;
+import pe.edu.utp.daoimpl.PagoDAOImpl;
+import pe.edu.utp.daoimpl.ReservaDAOImpl;
 import pe.edu.utp.modelo.Habitacion;
 import pe.edu.utp.modelo.Pago;
 import pe.edu.utp.modelo.Reserva;
@@ -30,13 +30,13 @@ import pe.edu.utp.vista.PrincipalVista;
 public class PagoControlador implements ActionListener {
 
     private final PrincipalVista vista;
-    private final PagoDAO pagoDao;
-    private final ReservaDAO reservaDao;
-    private final HabitacionDAO habitacionDao;
+    private final PagoDAOImpl pagoDao;
+    private final ReservaDAOImpl reservaDao;
+    private final HabitacionDAOImpl habitacionDao;
     private final PagoObservable observable = new PagoObservable();
     private boolean bloqueado = false;
 
-    public PagoControlador(PrincipalVista vista, PagoDAO pagoDao, ReservaDAO reservaDao, HabitacionDAO habitacionDao) {
+    public PagoControlador(PrincipalVista vista, PagoDAOImpl pagoDao, ReservaDAOImpl reservaDao, HabitacionDAOImpl habitacionDao) {
         this.vista = vista;
         this.pagoDao = pagoDao;
         this.reservaDao = reservaDao;
@@ -68,12 +68,12 @@ public class PagoControlador implements ActionListener {
 
     private void cargarReservas() {
         vista.getCbxReservaPP().removeAllItems();
-        List<Reserva> reservas = reservaDao.listarTodas();
+        List<Reserva> reservas = reservaDao.listarTodos();
 
         boolean alMenosUna = false;
 
         for (Reserva r : reservas) {
-            if (!pagoDao.existePagoParaReserva(r.getIdReserva())) {
+            if (!pagoDao.existePorIdReserva(r.getIdReserva())) {
                 String nombreCliente = reservaDao.obtenerNombreClientePorId(r.getIdCliente());
                 int numHabitacion = reservaDao.obtenerNumeroHabitacion(r.getIdHabitacion());
                 String txtCombo = r.getIdReserva() + " - " + nombreCliente + " | Hab. " + numHabitacion;
