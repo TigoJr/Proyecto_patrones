@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.utp.factory.EstadoHabitacionFactory;
@@ -49,9 +48,9 @@ public class HabitacionDAO {
             System.err.println("Ya existe una habitación con ese número.");
             return false;
         }
-
         String sql = "INSERT INTO Habitacion (numero, tipo, estado, precio) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            
             ps.setInt(1, habitacion.getNumero());
             ps.setString(2, habitacion.getTipo());
             ps.setString(3, habitacion.getEstadoActual().getNombreEstado());

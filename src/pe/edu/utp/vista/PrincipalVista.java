@@ -1028,8 +1028,6 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(4, 5, 5, 5);
         panelHabitaciones.add(txtPrecioPH, gridBagConstraints);
-
-        cbxTipoPH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simple", "Doble", "Suite" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -1039,8 +1037,6 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(20, 5, 4, 50);
         panelHabitaciones.add(cbxTipoPH, gridBagConstraints);
-
-        cbxEstadoPH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupada", "Mantenimiento" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -1142,8 +1138,6 @@ public class PrincipalVista extends javax.swing.JFrame {
         tabbedContenido.addTab("Habitaciones", panelHabitaciones);
 
         panelReservas.setLayout(new java.awt.GridBagLayout());
-
-        cbxClientePR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Cliente", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1153,8 +1147,6 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 50, 5, 5);
         panelReservas.add(cbxClientePR, gridBagConstraints);
-
-        cbxHabitacionPR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar Habitacion", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1313,8 +1305,6 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 50, 5, 5);
         panelPagos.add(cbxReservaPP, gridBagConstraints);
-
-        cbxMetodoPP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Efectivo", "Tarjeta" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1438,8 +1428,6 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 50, 10, 5);
         panelCheck.add(lblEstadoActual, gridBagConstraints);
-
-        cbxHabitacionPCK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

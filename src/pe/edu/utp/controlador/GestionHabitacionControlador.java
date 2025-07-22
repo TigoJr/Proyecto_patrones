@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.edu.utp.dao.HabitacionDAO;
 import pe.edu.utp.factory.EstadoHabitacionFactory;
-import pe.edu.utp.factory.HabitacionFactory;
+import pe.edu.utp.factory.TipoHabitacionFactory;
 import pe.edu.utp.modelo.Habitacion;
 import pe.edu.utp.state.EstadoHabitacion;
 import pe.edu.utp.vista.PrincipalVista;
@@ -74,7 +74,7 @@ public class GestionHabitacionControlador implements ActionListener, MouseListen
 
     private void actualizarPrecioPorTipo() {
         String tipo = vista.getCbxTipoPH().getSelectedItem().toString();
-        Habitacion temp = HabitacionFactory.crearHabitacion(tipo);
+        Habitacion temp = TipoHabitacionFactory.crearHabitacion(tipo);
         vista.getTxtPrecioPH().setText(String.valueOf(temp.getPrecio()));
     }
 
@@ -102,11 +102,11 @@ public class GestionHabitacionControlador implements ActionListener, MouseListen
     private void guardarHabitacion() {
         try {
             String tipo = vista.getCbxTipoPH().getSelectedItem().toString();
-            Habitacion h = HabitacionFactory.crearHabitacion(tipo);
+            Habitacion h = TipoHabitacionFactory.crearHabitacion(tipo);
 
             h.setNumero(Integer.parseInt(vista.getTxtNumeroPH().getText()));
             // h.setPrecio(Double.parseDouble(vista.txtPrecio.getText())); // o dejar el precio por defecto de la fábrica
-
+            
             if (dao.agregar(h)) {
                 JOptionPane.showMessageDialog(null, "Habitación registrada con Factory.");
                 cargarTablaHabitaciones();
@@ -130,10 +130,10 @@ public class GestionHabitacionControlador implements ActionListener, MouseListen
             h.setIdHabitacion(Integer.parseInt(vista.getTxtIdPH().getText()));
             h.setNumero(Integer.parseInt(vista.getTxtNumeroPH().getText()));
             h.setTipo(vista.getCbxTipoPH().getSelectedItem().toString());
-            
+
             String estadoSeleccionado = vista.getCbxEstadoPH().getSelectedItem().toString();
             EstadoHabitacion estado = EstadoHabitacionFactory.crearEstado(estadoSeleccionado);
-            
+
             h.setEstadoActual(estado);
             h.setPrecio(Double.parseDouble(vista.getTxtPrecioPH().getText()));
 

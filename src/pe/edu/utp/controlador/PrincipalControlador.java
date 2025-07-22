@@ -189,6 +189,27 @@ public class PrincipalControlador implements ActionListener {
         for (JComboBox<?> combo : combos) {
             Estilos.personalizarComboBox(combo);
         }
+
+        JComboBox<String> cbxTipo = vista.getCbxTipoPH();
+        cbxTipo.removeAllItems();
+        cbxTipo.addItem("Habitación twin");
+        cbxTipo.addItem("Habitación Twin Superior");
+        cbxTipo.addItem("Junior Suite Twin Bed");
+        cbxTipo.addItem("Junior Suite King");
+        cbxTipo.addItem("Junior Twin Superior");
+        cbxTipo.addItem("Junior King Superior");
+        cbxTipo.addItem("Grand Suite");
+
+        JComboBox<String> cbxEstado = vista.getCbxEstadoPH();
+        cbxEstado.removeAllItems();
+        cbxEstado.addItem("Disponible");
+        cbxEstado.addItem("Ocupada");
+        cbxEstado.addItem("Mantenimiento");
+
+        JComboBox<String> cbxMetodo = vista.getCbxMetodoPP();
+        cbxMetodo.removeAllItems();
+        cbxMetodo.addItem("Tarjeta");
+        cbxMetodo.addItem("Efectivo");
     }
 
     private void personalizarLabels() {
