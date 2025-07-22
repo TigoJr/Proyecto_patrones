@@ -27,7 +27,7 @@ public class PrincipalVista extends javax.swing.JFrame {
             if (iconUrl != null) {
                 ImageIcon icon = new ImageIcon(iconUrl);
                 setIconImage(icon.getImage());
-                
+
                 java.util.List<Image> icons = new java.util.ArrayList<>();
                 icons.add(icon.getImage());
                 icons.add(icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH));
@@ -140,6 +140,14 @@ public class PrincipalVista extends javax.swing.JFrame {
         return btnReservarPR;
     }
 
+    public javax.swing.JButton getBtnRefrescarPR() {
+        return btnRefrescarPR;
+    }
+    
+    public javax.swing.JButton getBtnRefrescarPP() {
+        return btnRefrescarPP;
+    }
+    
     public javax.swing.JComboBox<String> getCbxClientePR() {
         return cbxClientePR;
     }
@@ -219,7 +227,7 @@ public class PrincipalVista extends javax.swing.JFrame {
     public javax.swing.JLabel getLblFechaInicioPR() {
         return lblFechaInicioPR;
     }
-    
+
     public javax.swing.JLabel getLblFechaReservaPR() {
         return lblFechaReservaPR;
     }
@@ -371,7 +379,7 @@ public class PrincipalVista extends javax.swing.JFrame {
     public javax.swing.JTextField getTxtFechaInicioPR() {
         return txtFechaInicioPR;
     }
-    
+
     public javax.swing.JTextField getTxtFechaReservaPR() {
         return txtFechaReservaPR;
     }
@@ -489,8 +497,9 @@ public class PrincipalVista extends javax.swing.JFrame {
         txtFechaFinPR = new javax.swing.JTextField();
         txtEstadoPR = new javax.swing.JTextField();
         txtFechaReservaPR = new javax.swing.JTextField();
-        btnLimpiarPR = new javax.swing.JButton();
         btnReservarPR = new javax.swing.JButton();
+        btnLimpiarPR = new javax.swing.JButton();
+        btnRefrescarPR = new javax.swing.JButton();
         scrollTablaReservas = new javax.swing.JScrollPane();
         tablaReservas = new javax.swing.JTable();
         panelPagos = new javax.swing.JPanel();
@@ -502,6 +511,7 @@ public class PrincipalVista extends javax.swing.JFrame {
         txtMontoPP = new javax.swing.JTextField();
         btnRegistrarPP = new javax.swing.JButton();
         btnLimpiarPP = new javax.swing.JButton();
+        btnRefrescarPP = new javax.swing.JButton();
         scrollTablaPagos = new javax.swing.JScrollPane();
         tablaPagos = new javax.swing.JTable();
         panelCheck = new javax.swing.JPanel();
@@ -1243,6 +1253,16 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 5, 4, 5);
         panelReservas.add(txtFechaReservaPR, gridBagConstraints);
 
+        btnReservarPR.setText("RESERVAR");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 4, 50);
+        panelReservas.add(btnReservarPR, gridBagConstraints);
+
         btnLimpiarPR.setText("LIMPIAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -1253,15 +1273,15 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 50, 4, 50);
         panelReservas.add(btnLimpiarPR, gridBagConstraints);
 
-        btnReservarPR.setText("RESERVAR");
+        btnRefrescarPR.setText("REFRESCAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(20, 50, 4, 50);
-        panelReservas.add(btnReservarPR, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(4, 50, 4, 50);
+        panelReservas.add(btnRefrescarPR, gridBagConstraints);
 
         tablaReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1376,6 +1396,16 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 50, 5, 50);
         panelPagos.add(btnLimpiarPP, gridBagConstraints);
 
+        btnRefrescarPP.setText("REFRESCAR");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(4, 50, 5, 50);
+        panelPagos.add(btnRefrescarPP, gridBagConstraints);
+
         tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -1396,7 +1426,7 @@ public class PrincipalVista extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -1561,6 +1591,8 @@ public class PrincipalVista extends javax.swing.JFrame {
     private javax.swing.JButton btnRefrescarPC;
     private javax.swing.JButton btnRefrescarPCK;
     private javax.swing.JButton btnRefrescarPH;
+    private javax.swing.JButton btnRefrescarPP;
+    private javax.swing.JButton btnRefrescarPR;
     private javax.swing.JButton btnRegistrarPC;
     private javax.swing.JButton btnRegistrarPP;
     private javax.swing.JButton btnReservaciones;

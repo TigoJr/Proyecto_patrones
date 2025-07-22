@@ -50,6 +50,7 @@ public class ReservaControlador implements ActionListener {
     private void agregarEventos() {
         vista.getBtnReservarPR().addActionListener(this);
         vista.getBtnLimpiarPR().addActionListener(this);
+        vista.getBtnRefrescarPR().addActionListener(this);
     }
 
     private void cargarClientes() {
@@ -63,9 +64,11 @@ public class ReservaControlador implements ActionListener {
     private void cargarHabitacionesDisponibles() {
         List<Habitacion> habitaciones = habitacionDao.listarTodas();
         vista.getCbxHabitacionPR().removeAllItems();
+
         for (Habitacion h : habitaciones) {
             if (h.getEstadoActual().getNombreEstado().equalsIgnoreCase("Disponible")) {
-                vista.getCbxHabitacionPR().addItem(h.getIdHabitacion() + " - Hab. " + h.getNumero());
+                String item = h.getIdHabitacion() + " - N° Hab. " + h.getNumero() + " (" + h.getTipo() + ")";
+                vista.getCbxHabitacionPR().addItem(item);
             }
         }
     }
@@ -93,6 +96,7 @@ public class ReservaControlador implements ActionListener {
         vista.getTxtFechaInicioPR().setText("");
         cargarHabitacionesDisponibles();
         cargarClientes();
+        cargarHabitacionesDisponibles();
     }
 
     @Override
@@ -101,6 +105,9 @@ public class ReservaControlador implements ActionListener {
             registrarReserva();
         } else if (e.getSource() == vista.getBtnLimpiarPR()) {
             limpiarCampos();
+        } else if (e.getSource() == vista.getBtnRefrescarPR()) {
+            cargarClientes();
+            cargarHabitacionesDisponibles();
         }
     }
 

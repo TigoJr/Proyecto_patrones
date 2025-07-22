@@ -140,7 +140,8 @@ public class PrincipalControlador implements ActionListener {
             vista.getBtnLimpiarPC(), vista.getBtnLimpiarPH(),
             vista.getBtnLimpiarPP(), vista.getBtnLimpiarPR(),
             vista.getBtnRefrescarPC(), vista.getBtnRefrescarPCK(),
-            vista.getBtnRefrescarPH()
+            vista.getBtnRefrescarPH(), vista.getBtnRefrescarPR(),
+            vista.getBtnRefrescarPP()
         };
         for (JButton b : neutros) {
             Estilos.botonFormulario(b, PaletaColores.ACCION_NEUTRA);

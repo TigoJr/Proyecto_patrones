@@ -58,6 +58,7 @@ public class PagoControlador implements ActionListener {
     private void agregarEventos() {
         vista.getBtnRegistrarPP().addActionListener(this);
         vista.getBtnLimpiarPP().addActionListener(this);
+        vista.getBtnRefrescarPP().addActionListener(this);
         vista.getCbxReservaPP().addItemListener(e -> {
             if (!bloqueado && e.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
                 autocompletarFechaYMonto();
@@ -113,6 +114,9 @@ public class PagoControlador implements ActionListener {
             registrarPago();
         } else if (fuente == vista.getBtnLimpiarPP()) {
             limpiar();
+        } else if (fuente == vista.getBtnLimpiarPP()) {
+            cargarReservas();
+            cargarPagos();
         }
     }
 
