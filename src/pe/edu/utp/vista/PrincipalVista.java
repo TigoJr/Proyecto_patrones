@@ -148,6 +148,10 @@ public class PrincipalVista extends javax.swing.JFrame {
         return btnRefrescarPP;
     }
     
+    public javax.swing.JButton getBtnCerrarSesion() {
+        return btnCerrarSesion;
+    }
+    
     public javax.swing.JComboBox<String> getCbxClientePR() {
         return cbxClientePR;
     }
@@ -278,6 +282,18 @@ public class PrincipalVista extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLblTitulo() {
         return lblTitulo;
+    }
+    
+    public javax.swing.JLabel getLblHora() {
+        return lblHora;
+    }
+    
+    public javax.swing.JLabel getLblFechaInfo() {
+        return lblFechaInfo;
+    }
+    
+    public javax.swing.JLabel getLblUsuarioActivo() {
+        return lblUsuarioActivo;
     }
 
     public javax.swing.JPanel getPanelCheck() {
@@ -445,6 +461,10 @@ public class PrincipalVista extends javax.swing.JFrame {
         lblImgLogo = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         lblSlogan = new javax.swing.JLabel();
+        lblUsuarioActivo = new javax.swing.JLabel();
+        lblFechaInfo = new javax.swing.JLabel();
+        lblHora = new javax.swing.JLabel();
+        btnCerrarSesion = new javax.swing.JButton();
         tabbedContenido = new javax.swing.JTabbedPane();
         panelInicio = new javax.swing.JPanel();
         lblImgInicio = new javax.swing.JLabel();
@@ -727,6 +747,7 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(25, -5, 0, 25);
@@ -738,9 +759,52 @@ public class PrincipalVista extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, -5, 0, 0);
         panelTitulo.add(lblSlogan, gridBagConstraints);
+
+        lblUsuarioActivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUsuarioActivo.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioActivo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsuarioActivo.setText("Usuario:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.05;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        panelTitulo.add(lblUsuarioActivo, gridBagConstraints);
+
+        lblFechaInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFechaInfo.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechaInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFechaInfo.setText("0000/00/00");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.05;
+        panelTitulo.add(lblFechaInfo, gridBagConstraints);
+
+        lblHora.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHora.setText("00:00");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.05;
+        panelTitulo.add(lblHora, gridBagConstraints);
+
+        btnCerrarSesion.setText("CERRAR SESIÓN");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(12, 10, 10, 10);
+        panelTitulo.add(btnCerrarSesion, gridBagConstraints);
 
         panelContenido.add(panelTitulo);
 
@@ -1572,6 +1636,7 @@ public class PrincipalVista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarPC;
     private javax.swing.JButton btnBuscarPH;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnCheckIn;
     private javax.swing.JButton btnCheckOut;
@@ -1616,10 +1681,12 @@ public class PrincipalVista extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstadoPH;
     private javax.swing.JLabel lblEstadoPR;
     private javax.swing.JLabel lblFechaFinPR;
+    private javax.swing.JLabel lblFechaInfo;
     private javax.swing.JLabel lblFechaInicioPR;
     private javax.swing.JLabel lblFechaPP;
     private javax.swing.JLabel lblFechaReservaPR;
     private javax.swing.JLabel lblHabitacionPCK;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblIdPC;
     private javax.swing.JLabel lblIdPH;
     private javax.swing.JLabel lblImagenInicio;
@@ -1633,6 +1700,7 @@ public class PrincipalVista extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefonoPC;
     private javax.swing.JLabel lblTipoPH;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblUsuarioActivo;
     private javax.swing.JPanel panelCheck;
     private javax.swing.JPanel panelClientes;
     private javax.swing.JPanel panelContenido;

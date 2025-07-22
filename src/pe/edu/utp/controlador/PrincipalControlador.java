@@ -10,15 +10,20 @@ package pe.edu.utp.controlador;
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import pe.edu.utp.daoimpl.ClienteDAOImpl;
 import pe.edu.utp.daoimpl.HabitacionDAOImpl;
 import pe.edu.utp.daoimpl.PagoDAOImpl;
@@ -27,6 +32,7 @@ import pe.edu.utp.estilo.BotonLateralConLabel;
 import pe.edu.utp.estilo.Estilos;
 import pe.edu.utp.estilo.PaletaColores;
 import pe.edu.utp.modelo.Cliente;
+import pe.edu.utp.vista.LoginVista;
 import pe.edu.utp.vista.PrincipalVista;
 
 public class PrincipalControlador implements ActionListener {
@@ -40,6 +46,9 @@ public class PrincipalControlador implements ActionListener {
         configurarNavegacion();
         personalizarBotonesLateral();
         initControladores();
+
+        vista.getLblFechaInfo().setText(capitalizar(formatearFecha(LocalDate.now())));
+        iniciarReloj();
     }
 
     private void configurarNavegacion() {
@@ -53,6 +62,7 @@ public class PrincipalControlador implements ActionListener {
         for (JButton btn : navegacion.keySet()) {
             btn.addActionListener(this);
         }
+        vista.getBtnCerrarSesion().addActionListener(this);
     }
 
     private void initControladores() {
@@ -72,6 +82,15 @@ public class PrincipalControlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object origen = e.getSource();
+
+        if (origen.equals(vista.getBtnCerrarSesion())) {
+            vista.dispose();
+            LoginVista vista = new LoginVista();
+            new LoginControlador(vista);
+
+            vista.setLocationRelativeTo(null);
+            vista.setVisible(true);
+        }
 
         for (Map.Entry<JButton, JPanel> entry : navegacion.entrySet()) {
             JButton boton = entry.getKey();
@@ -129,7 +148,8 @@ public class PrincipalControlador implements ActionListener {
         }
 
         JButton[] destructivos = {
-            vista.getBtnEliminarPC(), vista.getBtnEliminarPH()
+            vista.getBtnEliminarPC(), vista.getBtnEliminarPH(),
+            vista.getBtnCerrarSesion()
         };
         for (JButton b : destructivos) {
             Estilos.botonFormulario(b, PaletaColores.ACCION_DESTRUCTIVA);
@@ -243,4 +263,24 @@ public class PrincipalControlador implements ActionListener {
         Estilos.estilizarTabbedPane(vista.getTabbedContenido());
     }
 
+    private String capitalizar(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+        return texto.substring(0, 1).toUpperCase() + texto.substring(1);
+    }
+
+    private String formatearFecha(LocalDate fecha) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d 'de' MMMM 'de' yyyy", new Locale("es", "PE"));
+        return fecha.format(formatter);
+    }
+
+    private void iniciarReloj() {
+        Timer timer = new Timer(1000, e -> {
+            LocalTime horaActual = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            vista.getLblHora().setText(horaActual.format(formatter));
+        });
+        timer.start();
+    }
 }

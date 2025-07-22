@@ -5,7 +5,7 @@
 package pe.edu.utp.servicio;
 
 import org.mindrot.jbcrypt.BCrypt;
-import pe.edu.utp.daoimpl.UsuarioDAOImpl;
+import pe.edu.utp.dao.UsuarioDAO;
 import pe.edu.utp.modelo.Usuario;
 
 /**
@@ -14,9 +14,9 @@ import pe.edu.utp.modelo.Usuario;
  */
 public class ServicioAutenticacion {
 
-    private final UsuarioDAOImpl usuarioDAO;
+    private final UsuarioDAO usuarioDAO;
 
-    public ServicioAutenticacion(UsuarioDAOImpl usuarioDAO) {
+    public ServicioAutenticacion(UsuarioDAO usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
     }
 
@@ -32,7 +32,9 @@ public class ServicioAutenticacion {
 
     public boolean autenticar(String nombreUsuario, String passwordPlano) {
         Usuario usuario = usuarioDAO.buscarPorNombreUsuario(nombreUsuario);
-        if (usuario == null) return false;
+        if (usuario == null) {
+            return false;
+        }
 
         return BCrypt.checkpw(passwordPlano, usuario.getPasswordHash());
     }
