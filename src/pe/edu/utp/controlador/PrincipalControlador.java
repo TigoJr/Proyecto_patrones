@@ -72,9 +72,9 @@ public class PrincipalControlador implements ActionListener {
         ReservaDAOImpl reservaDao = new ReservaDAOImpl();
         PagoDAOImpl pagoDao = new PagoDAOImpl();
 
-        new GestionHabitacionControlador(habitacionDAO, vista);
+        new HabitacionControlador(habitacionDAO, vista);
         new ReservaControlador(vista, clienteDAO, habitacionDAO, reservaDao);
-        new GestionClienteControlador(clienteDAO, cliente, vista);
+        new ClienteControlador(clienteDAO, cliente, vista);
         new PagoControlador(vista, pagoDao, reservaDao, habitacionDAO);
         new CheckInOutControlador(habitacionDAO, vista);
     }

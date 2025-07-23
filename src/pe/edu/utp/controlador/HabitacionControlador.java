@@ -22,13 +22,13 @@ import pe.edu.utp.vista.PrincipalVista;
  *
  * @author USUARIO
  */
-public class GestionHabitacionControlador implements ActionListener, MouseListener {
+public class HabitacionControlador implements ActionListener, MouseListener {
 
     private final HabitacionDAOImpl dao;
     private final PrincipalVista vista;
     private Habitacion habitacionSeleccionada;
 
-    public GestionHabitacionControlador(HabitacionDAOImpl dao, PrincipalVista vista) {
+    public HabitacionControlador(HabitacionDAOImpl dao, PrincipalVista vista) {
         this.dao = dao;
         this.vista = vista;
 

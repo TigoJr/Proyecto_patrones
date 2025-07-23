@@ -21,14 +21,14 @@ import pe.edu.utp.vista.PrincipalVista;
  *
  * @author USUARIO
  */
-public class GestionClienteControlador implements ActionListener, MouseListener {
+public class ClienteControlador implements ActionListener, MouseListener {
 
     private final ClienteDAOImpl dao;
     private final Cliente modelo;
     private final PrincipalVista vista;
     private Cliente clienteSeleccionado;
 
-    public GestionClienteControlador(ClienteDAOImpl dao, Cliente modelo, PrincipalVista vista) {
+    public ClienteControlador(ClienteDAOImpl dao, Cliente modelo, PrincipalVista vista) {
         this.dao = dao;
         this.modelo = modelo;
         this.vista = vista;
