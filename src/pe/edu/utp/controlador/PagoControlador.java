@@ -112,6 +112,7 @@ public class PagoControlador implements ActionListener {
 
         if (fuente == vista.getBtnRegistrarPP()) {
             registrarPago();
+            cargarReservas();
         } else if (fuente == vista.getBtnLimpiarPP()) {
             limpiar();
         } else if (fuente == vista.getBtnRefrescarPP()) {

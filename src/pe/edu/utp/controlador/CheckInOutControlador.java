@@ -16,7 +16,6 @@ import pe.edu.utp.modelo.Reserva;
 import pe.edu.utp.state.EstadoDisponible;
 import pe.edu.utp.state.EstadoHabitacion;
 import pe.edu.utp.state.EstadoMantenimiento;
-import pe.edu.utp.state.EstadoOcupada;
 import pe.edu.utp.vista.PrincipalVista;
 
 /**
@@ -39,7 +38,7 @@ public class CheckInOutControlador implements ActionListener {
     private void agregarEventos() {
         vista.getBtnCheckIn().addActionListener(this);
         vista.getBtnCheckOut().addActionListener(this);
-        vista.getBtnRefrescarPC().addActionListener(this);
+        vista.getBtnRefrescarPCK().addActionListener(this);
         vista.getCbxHabitacionPCK().addActionListener(this);
     }
 
@@ -148,13 +147,14 @@ public class CheckInOutControlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object fuente = e.getSource();
 
-        if (fuente == vista.getBtnRefrescarPC() || fuente == vista.getCbxHabitacionPCK()) {
+        if (fuente == vista.getCbxHabitacionPCK()) {
             actualizarEstadoActual();
-            cargarHabitaciones();
         } else if (fuente == vista.getBtnCheckIn()) {
             hacerCheckIn();
         } else if (fuente == vista.getBtnCheckOut()) {
             hacerCheckOut();
+        } else if (fuente == vista.getBtnRefrescarPCK()) {
+            cargarHabitaciones();
         }
     }
 }
