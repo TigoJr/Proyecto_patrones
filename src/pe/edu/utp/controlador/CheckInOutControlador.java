@@ -150,6 +150,7 @@ public class CheckInOutControlador implements ActionListener {
 
         if (fuente == vista.getBtnRefrescarPC() || fuente == vista.getCbxHabitacionPCK()) {
             actualizarEstadoActual();
+            cargarHabitaciones();
         } else if (fuente == vista.getBtnCheckIn()) {
             hacerCheckIn();
         } else if (fuente == vista.getBtnCheckOut()) {
